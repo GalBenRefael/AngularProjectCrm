@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="left">
+    <div>
+      <h1 class="text-center text-primary">Company CRM</h1>
+    </div>
+    <div>
+      <h3 class="text-center">Please Log In</h3>
+    </div>
+    <div>
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        class="col-6 m-auto"
+      >
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input
+            #nameFieldRef
+            formControlName="email"
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="name@email.com"
+          />
+        </div>
+        <app-field-error
+          [formField]="getFieldControl('email')"
+        ></app-field-error>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="password"
+          />
+        </div>
+        <app-field-error
+          [formField]="getFieldControl('password')"
+        ></app-field-error>
+
+        <button
+          [disabled]="loginForm.invalid"
+          type="submit"
+          class="btn btn-primary btn-lg"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="right"></div>
+</div>
