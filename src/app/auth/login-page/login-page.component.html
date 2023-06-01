@@ -39,7 +39,13 @@
         <app-field-error
           [formField]="getFieldControl('password')"
         ></app-field-error>
-
+        <div
+          *ngIf="errorMessage"
+          class="rounded text-success bg-light p-2 mb-2"
+        >
+          <i class="bi-exclamation-circle-fill"></i>
+          {{ errorMessage }}
+        </div>
         <button
           [disabled]="loginForm.invalid"
           type="submit"

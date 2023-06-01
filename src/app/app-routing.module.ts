@@ -7,15 +7,22 @@ import { UpdatecustomerComponent } from './customers/update-customer/update-cust
 import { ViewCustomerComponent } from './customers/view-customer/view-customer.component';
 
 import { EmployeesPageComponent } from './employees/employees-page/employees-page.component';
+import { AuthService } from './core/auth.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
-  { path: 'customers', component: CustomersPageComponent },
-  { path: 'update/:id', component: UpdatecustomerComponent },
-  { path: 'viewCustomer/:id', component: ViewCustomerComponent },
-  { path: 'employees', component: EmployeesPageComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  {
+    path: '',
+    canActivateChild: [AuthService],
+    children: [
+      { path: 'customers', component: CustomersPageComponent },
+      { path: 'update/:id', component: UpdatecustomerComponent },
+      { path: 'viewCustomer/:id', component: ViewCustomerComponent },
+      { path: 'employees', component: EmployeesPageComponent },
+    ],
+  },
 ];
 
 @NgModule({

@@ -1,26 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivateChild,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  redirectUrl = 'home';
-
-  isAuth = false;
+export class AuthService implements CanActivateChild {
+  redirectUrl = 'login';
 
   constructor(private api: ApiService, private router: Router) {}
 
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Promise<boolean> {
+    if (this.isLoggedIn()) return true;
+
+    this.redirectUrl = state.url;
+
+    return this.router.navigate(['login']);
+  }
+
   isLoggedIn(): boolean {
     const token = this.api.getToken();
-    this.isAuth = true;
     return token && token.length > 0 ? true : false;
   }
 
   islogedOut() {
     this.api.deleteToken();
-    this.isAuth = false;
     this.router.navigate(['/']);
   }
 }
