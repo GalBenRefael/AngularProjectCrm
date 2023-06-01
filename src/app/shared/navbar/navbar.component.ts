@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut() {
-    this.api.deleteToken();
-    this.route.navigate(['/']);
+    this.auth.islogedOut();
   }
 }
