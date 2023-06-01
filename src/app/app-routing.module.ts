@@ -10,6 +10,7 @@ import { EmployeesPageComponent } from './employees/employees-page/employees-pag
 import { AuthService } from './core/auth.service';
 
 const routes: Routes = [
+  { path: '', component: LoginPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
 

@@ -24,7 +24,7 @@ export class LoginPageComponent implements AfterViewInit {
   });
 
   constructor(private api: ApiService, private router: Router) {}
-  errorMessage: string = '';
+
   loggedIn: boolean = false;
 
   onSubmit() {
@@ -40,7 +40,6 @@ export class LoginPageComponent implements AfterViewInit {
       },
       error: (err) => {
         console.log(err.error);
-        this.errorMessage = 'Invalid Password';
       },
     });
   }
